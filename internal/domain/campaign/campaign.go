@@ -1,6 +1,7 @@
 package campaign
 
 import (
+	"errors"
 	"time"
 
 	"github.com/rs/xid"
@@ -18,13 +19,20 @@ type Campaign struct {
 	Contacts  []Contact `json:"contacts"`
 }
 
-func NewCampaign(name, content string, contacts []Contact) *Campaign {
-	
+func NewCampaign(name, content string, contacts []Contact) (*Campaign, error) {
+	if name == "" {
+		return nil, errors.New("name is required")
+	}else if content == "" {
+		return nil, errors.New("content is required")
+	}else if len(contacts) == 0 {
+		return nil, errors.New("contacts is required")}
+
+
 	return &Campaign{
 		ID:        xid.New().String(),
 		Name:      name,
 		CreatedOn: time.Now(),
 		Content:   content,
 		Contacts:  contacts,
-	}
+	}, nil
 }
