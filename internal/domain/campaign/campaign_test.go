@@ -6,11 +6,15 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+var(
+	name = "Test Campaign"
+	content = "This is a test campaign content"
+	contacts = []Contact{{Email: "email@example.com"},{Email: "user@gmail.com"}}
+)
+
+
 func Test_NewCampaign_CreatedCampaing(t *testing.T){
 	assert := assert.New(t)
-	name := "Test Campaign"
-	content := "This is a test campaign content"	
-	contacts := []Contact{{Email: "email@example.com"}, {Email: "user@gmail.com"}}
 
 	campaign := NewCampaign(name, content, contacts)
 
@@ -21,9 +25,6 @@ func Test_NewCampaign_CreatedCampaing(t *testing.T){
 
 func Test_NewCampaing_IDIsNotNill(t *testing.T){
 	assert := assert.New(t)
-	name := "Test Campaign"
-	content := "This is a test campaign content"	
-	contacts := []Contact{{Email: "email@example.com"}, {Email: "user@gmail.com"}}
 
 	campaign := NewCampaign(name, content, contacts)
 
@@ -31,11 +32,8 @@ func Test_NewCampaing_IDIsNotNill(t *testing.T){
 }
 
 func Test_NewCampaing_CreatedOnIsNotNill(t *testing.T){
-	assert := assert.New(t)
-	name := "Test Campaign"
-	content := "This is a test campaign content"	
-	contacts := []Contact{{Email: "email@example.com"}, {Email: "user@gmail.com"}}
-
+	assert := assert.New(t)	
+	
 	campaign := NewCampaign(name, content, contacts)
 
 	assert.NotNil(campaign.CreatedOn, "Campaign CreatedOn should not be nil")
