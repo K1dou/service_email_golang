@@ -1,6 +1,10 @@
 package campaign
 
-import "time"
+import (
+	"time"
+
+	"github.com/rs/xid"
+)
 
 type Contact struct {
 	Email string `json:"email"`
@@ -14,10 +18,10 @@ type Campaign struct {
 	Contacts  []Contact `json:"contacts"`
 }
 
-func NewCampaign(id, name, content string, contacts []Contact) *Campaign {
+func NewCampaign(name, content string, contacts []Contact) *Campaign {
 	
 	return &Campaign{
-		ID:        id,
+		ID:        xid.New().String(),
 		Name:      name,
 		CreatedOn: time.Now(),
 		Content:   content,
